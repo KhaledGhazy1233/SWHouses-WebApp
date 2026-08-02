@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Sparkles, Filter } from 'lucide-react';
-import SectionTitle from '../components/common/SectionTitle';
+import { ArrowLeft, Sparkles } from 'lucide-react';
 import ProjectCard from '../components/ui/ProjectCard';
-import Button from '../components/common/Button';
 import { projectsData } from '../data/projectsData';
+import { useTheme } from '../context/ThemeContext';
 
 export const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('الكل');
   const navigate = useNavigate();
+  const { isDark } = useTheme();
 
-  const categories = ['الكل', 'تطبيق جوال وويب', 'أنظمة أعمال وأتمتة', 'تطبيقات الويب والجوال', 'استراتيجية المنتج والويب'];
+  const categories = ['الكل', 'تطبيقات الجوال', 'تطبيقات الديسكتوب', 'تطبيقات الويب', 'أنظمة أعمال وأتمتة'];
 
   const filteredProjects = activeCategory === 'الكل'
     ? projectsData
     : projectsData.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-[#FAFAFB] text-slate-900 pt-24 pb-20">
+    <div className={`min-h-screen pt-24 pb-20 transition-colors duration-300 ${isDark ? 'bg-[#0F172A] text-slate-100' : 'bg-[#FAFAFB] text-slate-900'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {/* PAGE HEADER */}
@@ -26,8 +26,10 @@ export const Portfolio = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-50 text-sky-600 border border-sky-200"
+            className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold border ${isDark ? 'bg-slate-800/80 text-sky-400 border-slate-700' : 'bg-sky-50 text-sky-600 border-sky-200'
+              }`}
           >
+            <Sparkles className="w-3.5 h-3.5 text-sky-400" />
             <span>معرض الأعمال والمشاريع</span>
           </motion.div>
 
@@ -35,17 +37,17 @@ export const Portfolio = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight"
+            className={`text-4xl sm:text-5xl font-black tracking-tight leading-tight ${isDark ? 'text-white' : 'text-slate-950'}`}
           >
             مشاريع رقمية <br />
-            <span className="cyan-gradient-text">مصممة بعناية ومبنية للأثر التجاري</span>
+            <span className="text-sky-500">مصممة بعناية ومبنية للأثر التجاري</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal"
+            className={`text-base sm:text-lg leading-relaxed font-normal ${isDark ? 'text-slate-400' : 'text-slate-600'}`}
           >
             استعرض حلولنا البرمجية والاستراتيجيات الرقمية التي نفذناها مع شركائنا لتعزيز الكفاءة ومضاعفة عوائد النمو.
           </motion.p>
@@ -57,11 +59,12 @@ export const Portfolio = () => {
             <button
               key={idx}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                activeCategory === cat
-                  ? 'bg-slate-950 text-white shadow-sm'
-                  : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
-              }`}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeCategory === cat
+                  ? 'bg-sky-500 text-white shadow-md'
+                  : isDark
+                    ? 'bg-[#121824] text-slate-300 border border-slate-700/60 hover:bg-slate-800'
+                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
+                }`}
             >
               {cat}
             </button>
@@ -76,15 +79,16 @@ export const Portfolio = () => {
         </section>
 
         {/* BOTTOM CTA */}
-        <section className="text-center pt-8 bg-white p-8 rounded-3xl border border-slate-200/80 shadow-xs max-w-3xl mx-auto space-y-4">
-          <h3 className="text-2xl font-bold text-slate-900">هل لديك مشروع قادم ترغب في إطلاقه؟</h3>
-          <p className="text-sm text-slate-600">نساعدك على كتابة قصة النجاح التالية لعلامتك التجارية.</p>
+        <section className={`text-center pt-8 p-8 rounded-3xl border shadow-xs max-w-3xl mx-auto space-y-4 ${isDark ? 'bg-[#121824] border-slate-700/60 text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          }`}>
+          <h3 className="text-2xl font-bold">هل لديك مشروع قادم ترغب في إطلاقه؟</h3>
+          <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>نساعدك على كتابة قصة النجاح التالية لعلامتك التجارية.</p>
           <button
             onClick={() => navigate('/contact')}
-            className="inline-flex items-center gap-2 bg-slate-950 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-slate-800 transition-colors shadow-md cursor-pointer"
+            className="inline-flex items-center gap-2 bg-sky-500 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-sky-600 transition-colors shadow-md cursor-pointer"
           >
             <span>احجز جلسة استكشافية لمشروعك</span>
-            <ArrowLeft className="w-4 h-4 text-sky-400" />
+            <ArrowLeft className="w-4 h-4" />
           </button>
         </section>
 

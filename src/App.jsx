@@ -10,6 +10,7 @@ import ProjectDetails from './pages/ProjectDetails';
 import ContactBooking from './pages/ContactBooking';
 import { BookingProvider } from './context/BookingContext';
 import { LanguageProvider } from './context/LanguageContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -21,30 +22,46 @@ const ScrollToTop = () => {
   return null;
 };
 
+const AppContent = () => {
+  const { isDark } = useTheme();
+
+  return (
+    <div
+      className={`min-h-screen flex flex-col selection:bg-sky-500 selection:text-white transition-colors duration-300 ${
+        isDark
+          ? 'bg-[#0F172A] text-slate-200'
+          : 'bg-[#FAFAFB] text-slate-900'
+      }`}
+    >
+      <Navbar />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/portfolio/:id" element={<ProjectDetails />} />
+          <Route path="/contact" element={<ContactBooking />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
 export function App() {
   return (
-    <LanguageProvider>
-      <BookingProvider>
-        <Router>
-          <ScrollToTop />
-          <div className="min-h-screen flex flex-col bg-[#FAFAFB] text-slate-900 selection:bg-sky-500 selection:text-white transition-colors duration-200">
-            <Navbar />
-            <main className="flex-grow">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/portfolio/:id" element={<ProjectDetails />} />
-                <Route path="/contact" element={<ContactBooking />} />
-                <Route path="*" element={<Home />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </Router>
-      </BookingProvider>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <BookingProvider>
+          <Router>
+            <ScrollToTop />
+            <AppContent />
+          </Router>
+        </BookingProvider>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

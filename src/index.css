@@ -1,11 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Readex+Pro:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* ============================================================
+   TAILWIND DARK MODE — class strategy
+   ============================================================ */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   font-family: 'Readex Pro', 'Cairo', system-ui, -apple-system, sans-serif;
   color-scheme: light;
 }
 
+.dark {
+  color-scheme: dark;
+}
+
+/* ============================================================
+   BASE BODY — Light default, Dark override
+   ============================================================ */
 body {
   margin: 0;
   padding: 0;
@@ -15,24 +27,44 @@ body {
   text-align: right;
   overflow-x: hidden;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom Scrollbar */
+.dark body,
+:is(.dark) body {
+  background-color: #0F172A;
+  color: #E2E8F0;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: #F1F5F9;
 }
+.dark ::-webkit-scrollbar-track {
+  background: #1E293B;
+}
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;
   border-radius: 4px;
 }
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
 }
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
 
-/* Glassmorphism & custom utility classes */
+/* ============================================================
+   GLASSMORPHISM & UTILITY CLASSES
+   ============================================================ */
 .glass-card {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
@@ -40,11 +72,21 @@ body {
   border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(51, 65, 85, 0.8);
+}
+
 .glass-nav {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.dark .glass-nav {
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.7);
 }
 
 .dark-card {
@@ -58,10 +100,24 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.dark .gradient-text {
+  background: linear-gradient(135deg, #E2E8F0 0%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .cyan-gradient-text {
   background: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   THEME TOGGLE BUTTON ANIMATIONS
+   ============================================================ */
+.theme-toggle-btn {
+  position: relative;
+  overflow: hidden;
 }
 
 /* Badge pulse animation */
@@ -72,4 +128,41 @@ body {
 
 .animate-soft-pulse {
   animation: softPulse 3s infinite ease-in-out;
+}
+
+/* ============================================================
+   DARK MODE PAGE BACKGROUNDS
+   ============================================================ */
+.dark .bg-\[\#FAFAFB\] {
+  background-color: #0F172A !important;
+}
+
+.dark .bg-white {
+  background-color: #121824 !important;
+}
+
+.dark .border-slate-200\/70,
+.dark .border-slate-200\/80,
+.dark .border-slate-200 {
+  border-color: rgba(51, 65, 85, 0.7) !important;
+}
+
+.dark .text-slate-900 {
+  color: #E2E8F0 !important;
+}
+
+.dark .text-slate-950 {
+  color: #F1F5F9 !important;
+}
+
+.dark .text-slate-600 {
+  color: #94A3B8 !important;
+}
+
+.dark .text-slate-500 {
+  color: #64748B !important;
+}
+
+.dark .text-slate-700 {
+  color: #CBD5E1 !important;
 }

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Cpu, Atom, Smartphone, Terminal, Layers, Database, ChevronLeft, ChevronRight } from 'lucide-react';
 import { techStackData } from '../../data/servicesData';
 import { useLanguage } from '../../context/LanguageContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const iconMap = {
   Cpu: Cpu,
@@ -15,6 +16,7 @@ const iconMap = {
 
 export const TechStackSection = () => {
   const { lang, t } = useLanguage();
+  const { isDark } = useTheme();
   const [page, setPage] = useState(0);
   const [perPage, setPerPage] = useState(4);
 
@@ -31,7 +33,6 @@ export const TechStackSection = () => {
     return () => window.removeEventListener('resize', update);
   }, []);
 
-  // Reset page when perPage changes
   useEffect(() => {
     setPage(0);
   }, [perPage]);
@@ -51,7 +52,6 @@ export const TechStackSection = () => {
   const startIdx = page * perPage;
   const visibleItems = techStackData.slice(startIdx, startIdx + perPage);
 
-  // Slide direction for animation
   const [[direction], setDirection] = useState([0]);
 
   const handleNext = () => {
@@ -64,49 +64,48 @@ export const TechStackSection = () => {
   };
 
   const variants = {
-    enter: (dir) => ({
-      x: dir > 0 ? 80 : -80,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (dir) => ({
-      x: dir > 0 ? -80 : 80,
-      opacity: 0,
-    }),
+    enter: (dir) => ({ x: dir > 0 ? 80 : -80, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (dir) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
   };
 
+  const arrowActive = isDark
+    ? 'bg-sky-600 text-white border-sky-500 hover:bg-sky-500 hover:scale-105 active:scale-95 shadow-lg shadow-sky-500/20'
+    : 'bg-slate-950 text-white border-slate-800 hover:bg-slate-800 hover:scale-105 active:scale-95 shadow-lg shadow-slate-950/20';
+
+  const arrowDisabled = isDark
+    ? 'bg-slate-800 text-slate-600 border-slate-700 cursor-not-allowed opacity-40 shadow-none'
+    : 'bg-slate-100 text-slate-350 border-slate-200 cursor-not-allowed opacity-40 shadow-none';
+
   return (
-    <section className="bg-white rounded-3xl p-8 md:p-12 border border-slate-200/80 shadow-sm my-12 relative">
-      
+    <section className={`rounded-3xl p-8 md:p-12 border shadow-sm my-12 relative transition-colors duration-300 ${
+      isDark ? 'bg-[#121824] border-slate-700/60' : 'bg-white border-slate-200/80'
+    }`}>
+
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto space-y-2 mb-10">
-        <span className="text-xs font-bold text-sky-600 uppercase tracking-widest">
+        <span className="text-xs font-bold text-sky-500 uppercase tracking-widest">
           {t('techStackBadge')}
         </span>
-        <h2 className="text-3xl font-extrabold text-slate-900">
+        <h2 className={`text-3xl font-extrabold ${isDark ? 'text-white' : 'text-slate-900'}`}>
           {t('techStackTitle')}
         </h2>
-        <p className="text-xs sm:text-sm text-slate-500 font-normal">
+        <p className={`text-xs sm:text-sm font-normal ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
           {t('techStackSubtitle')}
         </p>
       </div>
 
       {/* Carousel Wrapper with Side Arrows */}
       <div className="relative px-2 sm:px-10">
-        
+
         {/* Left Arrow Button */}
         <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
           <button
             onClick={lang === 'ar' ? handleNext : handlePrev}
             disabled={lang === 'ar' ? !canNext : !canPrev}
-            className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer border shadow-md
-              ${(lang === 'ar' ? canNext : canPrev)
-                ? 'bg-slate-950 text-white border-slate-800 hover:bg-slate-800 hover:scale-105 active:scale-95 shadow-lg shadow-slate-950/20'
-                : 'bg-slate-100 text-slate-350 border-slate-200 cursor-not-allowed opacity-40 shadow-none'
-              }`}
+            className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer border shadow-md ${
+              (lang === 'ar' ? canNext : canPrev) ? arrowActive : arrowDisabled
+            }`}
             aria-label="Previous"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -132,18 +131,22 @@ export const TechStackSection = () => {
                 return (
                   <div
                     key={tech.name}
-                    className="group p-6 rounded-2xl bg-[#FAFAFB] border border-slate-200/80 text-center space-y-3 flex flex-col items-center justify-center hover:shadow-xl hover:border-sky-300 hover:-translate-y-1 transition-all duration-300"
+                    className={`group p-6 rounded-2xl border text-center space-y-3 flex flex-col items-center justify-center hover:shadow-xl hover:border-sky-400/60 hover:-translate-y-1 transition-all duration-300 ${
+                      isDark
+                        ? 'bg-[#0F172A] border-slate-700/60'
+                        : 'bg-[#FAFAFB] border-slate-200/80'
+                    }`}
                   >
                     <div className="w-14 h-14 rounded-xl bg-slate-950 text-sky-400 flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-sky-500/10 transition-all duration-300">
                       <IconComp className="w-7 h-7 stroke-[1.8]" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-black text-slate-950">{tech.name}</h4>
-                      <p className="text-[11px] text-sky-600 font-semibold mt-0.5">
+                      <h4 className={`text-lg font-black ${isDark ? 'text-slate-100' : 'text-slate-950'}`}>{tech.name}</h4>
+                      <p className="text-[11px] text-sky-500 font-semibold mt-0.5">
                         {lang === 'en' ? tech.categoryEn : tech.category}
                       </p>
                     </div>
-                    <p className="text-[11px] text-slate-500 leading-snug font-normal">
+                    <p className={`text-[11px] leading-snug font-normal ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                       {lang === 'en' ? tech.descEn : tech.desc}
                     </p>
                   </div>
@@ -158,11 +161,9 @@ export const TechStackSection = () => {
           <button
             onClick={lang === 'ar' ? handlePrev : handleNext}
             disabled={lang === 'ar' ? !canPrev : !canNext}
-            className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer border shadow-md
-              ${(lang === 'ar' ? canPrev : canNext)
-                ? 'bg-slate-950 text-white border-slate-800 hover:bg-slate-800 hover:scale-105 active:scale-95 shadow-lg shadow-slate-950/20'
-                : 'bg-slate-100 text-slate-350 border-slate-200 cursor-not-allowed opacity-40 shadow-none'
-              }`}
+            className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer border shadow-md ${
+              (lang === 'ar' ? canPrev : canNext) ? arrowActive : arrowDisabled
+            }`}
             aria-label="Next"
           >
             <ChevronRight className="w-5 h-5" />
@@ -173,7 +174,7 @@ export const TechStackSection = () => {
 
       {/* Dot Indicators & Page Number */}
       <div className="flex flex-col items-center justify-center gap-2 pt-6">
-        <span className="text-xs font-bold text-slate-400 tabular-nums">
+        <span className={`text-xs font-bold tabular-nums ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
           {page + 1} / {totalPages}
         </span>
         {totalPages > 1 && (
@@ -188,7 +189,7 @@ export const TechStackSection = () => {
                 className={`rounded-full transition-all duration-300 cursor-pointer ${
                   idx === page
                     ? 'w-8 h-2.5 bg-sky-500 shadow-sm shadow-sky-400/40'
-                    : 'w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400'
+                    : isDark ? 'w-2.5 h-2.5 bg-slate-600 hover:bg-slate-500' : 'w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400'
                 }`}
                 aria-label={`Page ${idx + 1}`}
               />

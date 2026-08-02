@@ -22,7 +22,7 @@ export const BookingProvider = ({ children }) => {
   };
 
   const submitBooking = () => {
-    setSubmittedBooking({ ...bookingData, bookingId: 'STRATOS-' + Math.floor(100000 + Math.random() * 900000) });
+    setSubmittedBooking({ ...bookingData, bookingId: 'GHAZY-' + Math.floor(100000 + Math.random() * 900000) });
     setIsBooked(true);
   };
 

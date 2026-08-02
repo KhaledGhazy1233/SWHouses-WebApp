@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '../../context/ThemeContext';
 
 export const Button = ({
   children,
@@ -13,15 +14,23 @@ export const Button = ({
   disabled = false,
   ...props
 }) => {
+  const { isDark } = useTheme();
+
   const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
 
   const variants = {
     primary: "bg-slate-900 text-white hover:bg-slate-800 shadow-md shadow-slate-900/10 focus:ring-slate-900",
-    secondary: "bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 shadow-sm focus:ring-slate-400",
+    secondary: isDark
+      ? "bg-slate-800 text-slate-200 border border-slate-600 hover:bg-slate-700 shadow-sm focus:ring-slate-500"
+      : "bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 shadow-sm focus:ring-slate-400",
     cyan: "bg-sky-500 text-white hover:bg-sky-600 shadow-md shadow-sky-500/20 focus:ring-sky-400",
     darkCyan: "bg-sky-950 text-sky-400 border border-sky-800 hover:bg-sky-900 focus:ring-sky-500",
-    outline: "bg-transparent text-slate-700 border border-slate-300 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-400",
-    ghost: "bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-400"
+    outline: isDark
+      ? "bg-transparent text-slate-300 border border-slate-600 hover:bg-slate-800 hover:text-slate-100 focus:ring-slate-500"
+      : "bg-transparent text-slate-700 border border-slate-300 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-400",
+    ghost: isDark
+      ? "bg-transparent text-slate-300 hover:bg-slate-800 hover:text-slate-100 focus:ring-slate-500"
+      : "bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-400"
   };
 
   const sizes = {

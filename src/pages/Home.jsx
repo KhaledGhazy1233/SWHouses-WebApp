@@ -18,20 +18,22 @@ import TechStackSection from '../components/ui/TechStackSection';
 import { projectsData, teamData, processSteps } from '../data/projectsData';
 import { servicesData } from '../data/servicesData';
 import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 
 export const Home = () => {
   const navigate = useNavigate();
   const { lang, t } = useLanguage();
+  const { isDark } = useTheme();
 
   const isRtl = lang === 'ar';
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
-    <div className="min-h-screen bg-[#FAFAFB] text-slate-900 pt-20 sm:pt-24">
+    <div className={`min-h-screen pt-20 sm:pt-24 transition-colors duration-300 ${isDark ? 'bg-[#0F172A] text-slate-200' : 'bg-[#FAFAFB] text-slate-900'}`}>
 
       {/* ═══════════ HERO SECTION ═══════════ */}
       <section className="relative overflow-hidden pt-6 pb-14 sm:pt-8 sm:pb-20 md:pt-16 md:pb-28">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] sm:w-[600px] h-[250px] sm:h-[350px] bg-sky-100/60 blur-[120px] rounded-full pointer-events-none -z-10" />
+        <div className={`absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] sm:w-[600px] h-[250px] sm:h-[350px] blur-[120px] rounded-full pointer-events-none -z-10 ${isDark ? 'bg-sky-900/30' : 'bg-sky-100/60'}`} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -41,7 +43,7 @@ export const Home = () => {
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-sky-50 text-sky-600 border border-sky-200/80 shadow-xs"
+                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold border shadow-xs ${isDark ? 'bg-sky-900/40 text-sky-300 border-sky-700/60' : 'bg-sky-50 text-sky-600 border-sky-200/80'}`}
               >
                 <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-sky-500" />
                 <span>{t('futureReady')}</span>
@@ -51,7 +53,7 @@ export const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-950 tracking-tight leading-[1.15]"
+                className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] ${isDark ? 'text-white' : 'text-slate-950'}`}
               >
                 {t('heroTitle1')} <br className="hidden sm:block" />
                 <span className="cyan-gradient-text">{t('heroTitle2')}</span>
@@ -61,7 +63,7 @@ export const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl leading-relaxed font-normal"
+                className={`text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed font-normal ${isDark ? 'text-slate-400' : 'text-slate-600'}`}
               >
                 {t('heroSubtitle')}
               </motion.p>
@@ -98,19 +100,19 @@ export const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="grid grid-cols-3 gap-4 sm:gap-6 pt-6 sm:pt-8 border-t border-slate-200/80 max-w-lg"
+                className={`grid grid-cols-3 gap-4 sm:gap-6 pt-6 sm:pt-8 border-t max-w-lg ${isDark ? 'border-slate-700/60' : 'border-slate-200/80'}`}
               >
                 <div>
-                  <div className="text-xl sm:text-2xl md:text-3xl font-black text-slate-950">+150</div>
-                  <div className="text-[10px] sm:text-xs text-slate-500 font-medium">{t('statProjects')}</div>
+                  <div className={`text-xl sm:text-2xl md:text-3xl font-black ${isDark ? 'text-white' : 'text-slate-950'}`}>+150</div>
+                  <div className={`text-[10px] sm:text-xs font-medium ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>{t('statProjects')}</div>
                 </div>
                 <div>
-                  <div className="text-xl sm:text-2xl md:text-3xl font-black text-slate-950">98%</div>
-                  <div className="text-[10px] sm:text-xs text-slate-500 font-medium">{t('statSatisfaction')}</div>
+                  <div className={`text-xl sm:text-2xl md:text-3xl font-black ${isDark ? 'text-white' : 'text-slate-950'}`}>98%</div>
+                  <div className={`text-[10px] sm:text-xs font-medium ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>{t('statSatisfaction')}</div>
                 </div>
                 <div>
-                  <div className="text-xl sm:text-2xl md:text-3xl font-black text-slate-950">24/7</div>
-                  <div className="text-[10px] sm:text-xs text-slate-500 font-medium">{t('statSupport')}</div>
+                  <div className={`text-xl sm:text-2xl md:text-3xl font-black ${isDark ? 'text-white' : 'text-slate-950'}`}>24/7</div>
+                  <div className={`text-[10px] sm:text-xs font-medium ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>{t('statSupport')}</div>
                 </div>
               </motion.div>
             </div>
@@ -123,7 +125,7 @@ export const Home = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none"
               >
-                <div className="relative rounded-[28px] sm:rounded-[36px] p-5 sm:p-6 md:p-8 bg-white border border-slate-200/70 shadow-[0_20px_50px_rgba(0,0,0,0.08)] space-y-5 sm:space-y-6">
+                <div className={`relative rounded-[28px] sm:rounded-[36px] p-5 sm:p-6 md:p-8 border shadow-[0_20px_50px_rgba(0,0,0,0.08)] space-y-5 sm:space-y-6 ${isDark ? 'bg-[#121824] border-slate-700/60' : 'bg-white border-slate-200/70'}`}>
 
                   {/* Growth Index Badge */}
                   <div className="absolute top-3 right-3 sm:top-6 sm:right-6 z-20 bg-[#0B111D] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl sm:rounded-2xl shadow-xl border border-slate-800 flex items-center gap-2 sm:gap-3">
@@ -140,7 +142,7 @@ export const Home = () => {
                   <div className="bg-[#0B1220] rounded-[20px] sm:rounded-[28px] p-4 sm:p-6 md:p-7 border border-slate-800 shadow-2xl space-y-4 sm:space-y-5 text-start font-sans">
                     <div className="flex items-center justify-between pt-1 sm:pt-2">
                       <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-[10px] sm:text-xs font-semibold text-slate-400">Stratos Platform</span>
+                      <span className="text-[10px] sm:text-xs font-semibold text-slate-400">GhazyGroup Platform</span>
                     </div>
 
                     <div className="text-center py-1">
@@ -158,7 +160,7 @@ export const Home = () => {
                     <div className="space-y-2 text-[10px] sm:text-xs font-sans">
                       <div className="flex justify-between items-center bg-[#111A2E] px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-slate-800/60">
                         <span className="text-emerald-400 font-bold">18.4%+</span>
-                        <span className="text-slate-300 font-medium">NET & React API.</span>
+                        <span className="text-slate-300 font-medium">NET &amp; React API.</span>
                       </div>
                       <div className="flex justify-between items-center bg-[#111A2E] px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-slate-800/60">
                         <span className="text-sky-400 font-bold">Completed</span>
@@ -168,12 +170,12 @@ export const Home = () => {
                   </div>
 
                   {/* Bottom Bar */}
-                  <div className="bg-[#F6F8FA] p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/80 flex items-center justify-between gap-2">
-                    <div className="bg-slate-200/80 text-slate-700 text-[10px] sm:text-xs font-semibold px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl">
+                  <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border flex items-center justify-between gap-2 ${isDark ? 'bg-[#1E293B] border-slate-700/60' : 'bg-[#F6F8FA] border-slate-200/80'}`}>
+                    <div className={`text-[10px] sm:text-xs font-semibold px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl ${isDark ? 'bg-slate-700 text-slate-300' : 'bg-slate-200/80 text-slate-700'}`}>
                       Tech 2024
                     </div>
                     <div className="text-end flex-1 min-w-0">
-                      <div className="text-[11px] sm:text-xs md:text-sm font-extrabold text-slate-950 truncate">High Speed Architecture</div>
+                      <div className={`text-[11px] sm:text-xs md:text-sm font-extrabold truncate ${isDark ? 'text-slate-100' : 'text-slate-950'}`}>High Speed Architecture</div>
                       <div className="text-[9px] sm:text-[11px] text-slate-500 font-medium truncate">NET, React, Flutter, Python.</div>
                     </div>
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-sky-50 text-sky-500 flex items-center justify-center border border-sky-100 shadow-2xs shrink-0">
@@ -188,7 +190,7 @@ export const Home = () => {
           </div>
 
           {/* Trusted Leaders */}
-          <div className="mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-slate-200/80 text-center">
+          <div className={`mt-10 sm:mt-16 pt-6 sm:pt-8 border-t text-center ${isDark ? 'border-slate-700/60' : 'border-slate-200/80'}`}>
             <p className="text-[10px] sm:text-xs font-bold uppercase text-slate-400 tracking-widest mb-4 sm:mb-6">
               {t('trustedLeaders')}
             </p>
@@ -205,7 +207,7 @@ export const Home = () => {
       </section>
 
       {/* ═══════════ CORE PILLARS + TECH STACK ═══════════ */}
-      <section className="py-12 sm:py-16 bg-white border-y border-slate-200/70">
+      <section className={`py-12 sm:py-16 border-y transition-colors duration-300 ${isDark ? 'bg-[#121824] border-slate-700/60' : 'bg-white border-slate-200/70'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             badge={t('pillarsBadge')}
@@ -224,13 +226,13 @@ export const Home = () => {
                 <motion.div
                   key={idx}
                   whileHover={{ y: -6 }}
-                  className="p-6 sm:p-8 rounded-2xl bg-[#FAFAFB] border border-slate-200/80 shadow-xs space-y-3 sm:space-y-4 text-start"
+                  className={`p-6 sm:p-8 rounded-2xl border shadow-xs space-y-3 sm:space-y-4 text-start transition-colors ${isDark ? 'bg-[#0F172A] border-slate-700/60' : 'bg-[#FAFAFB] border-slate-200/80'}`}
                 >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-slate-950 text-sky-400 flex items-center justify-center font-bold">
                     <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-extrabold text-slate-900">{t(pillar.titleKey)}</h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{t(pillar.descKey)}</p>
+                  <h3 className={`text-lg sm:text-xl font-extrabold ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>{t(pillar.titleKey)}</h3>
+                  <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{t(pillar.descKey)}</p>
                 </motion.div>
               );
             })}
@@ -241,7 +243,7 @@ export const Home = () => {
       </section>
 
       {/* ═══════════ SERVICES SECTION ═══════════ */}
-      <section className="py-14 sm:py-20">
+      <section className={`py-14 sm:py-20 transition-colors duration-300 ${isDark ? 'bg-[#0F172A]' : 'bg-[#FAFAFB]'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             badge={t('servicesBadge')}
@@ -264,7 +266,7 @@ export const Home = () => {
       </section>
 
       {/* ═══════════ PORTFOLIO PREVIEW ═══════════ */}
-      <section className="py-14 sm:py-20 bg-white border-t border-slate-200/80">
+      <section className={`py-14 sm:py-20 border-t transition-colors duration-300 ${isDark ? 'bg-[#121824] border-slate-700/60' : 'bg-white border-slate-200/80'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             badge={t('portfolioBadge')}
@@ -273,7 +275,7 @@ export const Home = () => {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {projectsData.slice(0, 4).map((project, index) => (
+            {projectsData.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
@@ -287,7 +289,7 @@ export const Home = () => {
       </section>
 
       {/* ═══════════ TEAM PREVIEW ═══════════ */}
-      <section className="py-14 sm:py-20 bg-[#FAFAFB]">
+      <section className={`py-14 sm:py-20 transition-colors duration-300 ${isDark ? 'bg-[#0F172A]' : 'bg-[#FAFAFB]'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             badge={t('teamBadge')}
@@ -303,17 +305,17 @@ export const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow text-start"
+                className={`rounded-2xl p-5 sm:p-6 border shadow-xs hover:shadow-md transition-all text-start ${isDark ? 'bg-[#121824] border-slate-700/60 hover:border-sky-700/40' : 'bg-white border-slate-200/80'}`}
               >
                 <div className="h-36 sm:h-44 rounded-xl overflow-hidden mb-4 sm:mb-5 bg-slate-100">
                   <img src={member.image} alt={member.title} className="w-full h-full object-cover" />
                 </div>
-                <div className="text-[10px] sm:text-xs font-bold text-sky-600 mb-1">{member.role}</div>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1.5 sm:mb-2">{member.title}</h3>
-                <p className="text-[10px] sm:text-xs text-slate-600 leading-relaxed mb-3 sm:mb-4">{member.desc}</p>
+                <div className="text-[10px] sm:text-xs font-bold text-sky-500 mb-1">{member.role}</div>
+                <h3 className={`text-base sm:text-lg font-bold mb-1.5 sm:mb-2 ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>{member.title}</h3>
+                <p className={`text-[10px] sm:text-xs leading-relaxed mb-3 sm:mb-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{member.desc}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {member.tags.map((tag, idx) => (
-                    <span key={idx} className="text-[9px] sm:text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600">{tag}</span>
+                    <span key={idx} className={`text-[9px] sm:text-[10px] font-medium px-2 py-0.5 rounded ${isDark ? 'bg-slate-700 text-slate-300' : 'bg-slate-100 text-slate-600'}`}>{tag}</span>
                   ))}
                 </div>
               </motion.div>
@@ -323,7 +325,7 @@ export const Home = () => {
       </section>
 
       {/* ═══════════ PROCESS ROADMAP ═══════════ */}
-      <section className="py-14 sm:py-20 bg-white border-t border-slate-200">
+      <section className={`py-14 sm:py-20 border-t transition-colors duration-300 ${isDark ? 'bg-[#121824] border-slate-700/60' : 'bg-white border-slate-200'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             badge={t('processBadge')}
@@ -339,15 +341,15 @@ export const Home = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 p-5 sm:p-6 rounded-2xl bg-[#FAFAFB] border border-slate-200/80 text-start"
+                className={`flex flex-col sm:flex-row items-start gap-4 sm:gap-6 p-5 sm:p-6 rounded-2xl border text-start transition-colors ${isDark ? 'bg-[#0F172A] border-slate-700/60' : 'bg-[#FAFAFB] border-slate-200/80'}`}
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-slate-950 text-sky-400 flex items-center justify-center font-black text-sm sm:text-base shrink-0">
                   {idx + 1}
                 </div>
                 <div className="space-y-1 flex-1">
-                  <div className="text-[10px] sm:text-xs font-bold text-sky-600">{step.step} - {step.title}</div>
-                  <h4 className="text-lg sm:text-xl font-bold text-slate-900">{step.arabicTitle}</h4>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{step.desc}</p>
+                  <div className="text-[10px] sm:text-xs font-bold text-sky-500">{step.step} - {step.title}</div>
+                  <h4 className={`text-lg sm:text-xl font-bold ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>{step.arabicTitle}</h4>
+                  <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{step.desc}</p>
                 </div>
               </motion.div>
             ))}

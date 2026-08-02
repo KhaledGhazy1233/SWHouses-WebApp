@@ -121,6 +121,36 @@ export const ContactBooking = () => {
                   </div>
                 </div>
 
+                {/* PHONE NUMBER 2 */}
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xs">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-sky-950 text-sky-400 flex items-center justify-center shrink-0">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                    <div className="text-start">
+                      <div className="text-[10px] text-slate-400 font-semibold">{t('phoneLabel')}</div>
+                      <a href="tel:+201212390055" className="text-sm font-bold text-white hover:text-sky-400 transition-colors dir-ltr">
+                        +20 12 12390055
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* PHONE NUMBER 3 */}
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xs">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-sky-950 text-sky-400 flex items-center justify-center shrink-0">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                    <div className="text-start">
+                      <div className="text-[10px] text-slate-400 font-semibold">{t('phoneLabel')}</div>
+                      <a href="tel:+201554794875" className="text-sm font-bold text-white hover:text-sky-400 transition-colors dir-ltr">
+                        +20 15 54794875
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
