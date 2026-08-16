@@ -5,7 +5,7 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
     // Default to light mode; only use saved preference if it exists
-    const saved = localStorage.getItem('ghazy-theme');
+    const saved = localStorage.getItem('vortex-theme') || localStorage.getItem('ghazy-theme');
     return saved === 'dark';
   });
 
@@ -13,10 +13,10 @@ export const ThemeProvider = ({ children }) => {
     const root = document.documentElement;
     if (isDark) {
       root.classList.add('dark');
-      localStorage.setItem('ghazy-theme', 'dark');
+      localStorage.setItem('vortex-theme', 'dark');
     } else {
       root.classList.remove('dark');
-      localStorage.setItem('ghazy-theme', 'light');
+      localStorage.setItem('vortex-theme', 'light');
     }
   }, [isDark]);
 

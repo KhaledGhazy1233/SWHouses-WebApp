@@ -4,7 +4,7 @@ import { Menu, X, ArrowLeft, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTheme } from '../../context/ThemeContext';
-import { GhazyLogo } from './GhazyLogo';
+import { VortexHubLogo } from './VortexHubLogo';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -139,7 +139,7 @@ export const Navbar = () => {
 
           {/* ── Right / End: Brand Logo ── */}
           <Link to="/">
-            <GhazyLogo theme={isDark ? 'dark' : 'light'} />
+            <VortexHubLogo theme={isDark ? 'dark' : 'light'} />
           </Link>
 
         </div>

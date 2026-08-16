@@ -1,20 +1,68 @@
-<svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M100 8 L188 58 L188 162 L100 212 L12 162 L12 58 Z" fill="#0B1220"/>
-  <path d="M100 12 L182 59 L182 159 L100 206 L18 159 L18 59 Z" stroke="#00BCD4" stroke-width="12" stroke-linejoin="miter"/>
-  <path d="M32 67 L95 31" stroke="#00BCD4" stroke-width="10"/>
-  <path d="M32 67 L32 151 L95 187" stroke="#00BCD4" stroke-width="10"/>
-  <path d="M48 83 L48 139 L95 167" stroke="#00BCD4" stroke-width="8"/>
-  <path d="M105 31 L168 67 L168 151 L105 187" stroke="#5A6E7F" stroke-width="10"/>
-  <path d="M152 83 L152 139 L105 167" stroke="#5A6E7F" stroke-width="8"/>
-  <path d="M100 52 L144 77 L144 131 L100 156 L56 131 L56 77 Z" stroke="#00BCD4" stroke-width="7"/>
-  <polygon points="72,74 128,74 120,84 80,84" fill="#00BCD4"/>
-  <polygon points="80,84 120,84 112,92 80,92" fill="#475569"/>
-  <polygon points="72,74 80,84 80,124 72,134" fill="#00BCD4"/>
-  <polygon points="80,84 88,92 88,116 80,124" fill="#334155"/>
-  <polygon points="72,134 128,134 120,124 80,124" fill="#00BCD4"/>
-  <polygon points="80,124 120,124 112,116 88,116" fill="#475569"/>
-  <polygon points="128,134 128,100 120,107 120,124" fill="#00BCD4"/>
-  <polygon points="120,107 112,113 112,116 120,124" fill="#334155"/>
-  <polygon points="128,100 102,100 110,107 120,107" fill="#00BCD4"/>
-  <polygon points="102,100 110,107 102,107" fill="#38BDF8"/>
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vhGrad0" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A855F7" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+
+    <linearGradient id="vhGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#6D28D9" />
+    </linearGradient>
+
+    <linearGradient id="vhGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6D28D9" />
+      <stop offset="100%" stop-color="#4C1D95" />
+    </linearGradient>
+
+    <linearGradient id="vhGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4C1D95" />
+      <stop offset="100%" stop-color="#2E1065" />
+    </linearGradient>
+
+    <linearGradient id="vhGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2E1065" />
+      <stop offset="100%" stop-color="#1B1464" />
+    </linearGradient>
+
+    <linearGradient id="vhGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B1464" />
+      <stop offset="100%" stop-color="#0F0C31" />
+    </linearGradient>
+
+    <linearGradient id="vhGrad6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B" />
+      <stop offset="100%" stop-color="#4338CA" />
+    </linearGradient>
+
+    <linearGradient id="vhGrad7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4338CA" />
+      <stop offset="100%" stop-color="#9333EA" />
+    </linearGradient>
+
+    <linearGradient id="vhVRightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A855F7" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+  </defs>
+
+  <circle cx="100" cy="100" r="96" fill="#FFFFFF" />
+
+  <g id="Vortex-Spiral-Blades">
+    <path d="M 100 6 C 136 6, 168 22, 186 52 C 158 70, 126 90, 84 94 C 80 58, 86 28, 100 6 Z" fill="url(#vhGrad0)" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" />
+    <path d="M 100 6 C 136 6, 168 22, 186 52 C 158 70, 126 90, 84 94 C 80 58, 86 28, 100 6 Z" fill="url(#vhGrad1)" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" transform="rotate(45 100 100)" />
+    <path d="M 100 6 C 136 6, 168 22, 186 52 C 158 70, 126 90, 84 94 C 80 58, 86 28, 100 6 Z" fill="url(#vhGrad2)" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" transform="rotate(90 100 100)" />
+    <path d="M 100 6 C 136 6, 168 22, 186 52 C 158 70, 126 90, 84 94 C 80 58, 86 28, 100 6 Z" fill="url(#vhGrad3)" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" transform="rotate(135 100 100)" />
+    <path d="M 100 6 C 136 6, 168 22, 186 52 C 158 70, 126 90, 84 94 C 80 58, 86 28, 100 6 Z" fill="url(#vhGrad4)" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" transform="rotate(180 100 100)" />
+    <path d="M 100 6 C 136 6, 168 22, 186 52 C 158 70, 126 90, 84 94 C 80 58, 86 28, 100 6 Z" fill="url(#vhGrad5)" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" transform="rotate(225 100 100)" />
+    <path d="M 100 6 C 136 6, 168 22, 186 52 C 158 70, 126 90, 84 94 C 80 58, 86 28, 100 6 Z" fill="url(#vhGrad6)" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" transform="rotate(270 100 100)" />
+    <path d="M 100 6 C 136 6, 168 22, 186 52 C 158 70, 126 90, 84 94 C 80 58, 86 28, 100 6 Z" fill="url(#vhGrad7)" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" transform="rotate(315 100 100)" />
+  </g>
+
+  <circle cx="100" cy="100" r="35" fill="#FFFFFF" />
+
+  <g id="Vortex-Center-V">
+    <path d="M 68 72 L 84 72 L 100 104 L 100 136 Z" fill="#1B1464" />
+    <path d="M 100 104 L 116 72 L 132 72 L 100 136 Z" fill="url(#vhVRightGrad)" />
+  </g>
 </svg>

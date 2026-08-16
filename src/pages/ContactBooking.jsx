@@ -15,6 +15,7 @@ import SectionTitle from '../components/common/SectionTitle';
 import Button from '../components/common/Button';
 import { useBooking } from '../context/BookingContext';
 import { useLanguage } from '../context/LanguageContext';
+import cairoLocationImg from '../assets/cairo-location.png';
 
 export const ContactBooking = () => {
   const { bookingData, updateBooking, submitBooking, isBooked, submittedBooking, resetBooking } = useBooking();
@@ -136,36 +137,21 @@ export const ContactBooking = () => {
                   </div>
                 </div>
 
-                {/* PHONE NUMBER 3 */}
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xs">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-sky-950 text-sky-400 flex items-center justify-center shrink-0">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div className="text-start">
-                      <div className="text-[10px] text-slate-400 font-semibold">{t('phoneLabel')}</div>
-                      <a href="tel:+201554794875" className="text-sm font-bold text-white hover:text-sky-400 transition-colors dir-ltr">
-                        +20 15 54794875
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
               </div>
             </div>
 
-            {/* Riyadh Location Card Preview */}
+            {/* Cairo Location Card Preview */}
             <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-slate-900 h-48 group">
               <img
-                src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80"
+                src={cairoLocationImg}
                 alt="Location Preview"
-                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
               <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white">
                 <MapPin className="w-4 h-4 text-sky-600" />
                 <span className="text-xs font-extrabold text-slate-900">
-                  {lang === 'en' ? 'Riyadh, Saudi Arabia' : 'الرياض، المملكة العربية السعودية'}
+                  {lang === 'en' ? 'Cairo, Egypt' : 'القاهرة، جمهورية مصر العربية'}
                 </span>
               </div>
             </div>

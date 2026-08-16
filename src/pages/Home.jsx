@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -21,6 +21,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 
 export const Home = () => {
+  const [showAllProjects, setShowAllProjects] = useState(false);
   const navigate = useNavigate();
   const { lang, t } = useLanguage();
   const { isDark } = useTheme();
@@ -142,7 +143,7 @@ export const Home = () => {
                   <div className="bg-[#0B1220] rounded-[20px] sm:rounded-[28px] p-4 sm:p-6 md:p-7 border border-slate-800 shadow-2xl space-y-4 sm:space-y-5 text-start font-sans">
                     <div className="flex items-center justify-between pt-1 sm:pt-2">
                       <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-[10px] sm:text-xs font-semibold text-slate-400">GhazyGroup Platform</span>
+                      <span className="text-[10px] sm:text-xs font-semibold text-slate-400">Vortex Hub Platform</span>
                     </div>
 
                     <div className="text-center py-1">
@@ -258,7 +259,14 @@ export const Home = () => {
           </div>
 
           <div className="mt-10 sm:mt-12 text-center">
-            <Button variant="outline" size="lg" onClick={() => navigate('/services')}>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                navigate('/services');
+              }}
+            >
               {t('viewAllServices')}
             </Button>
           </div>
@@ -275,15 +283,36 @@ export const Home = () => {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {projectsData.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
+            <AnimatePresence>
+              {(showAllProjects ? projectsData : projectsData.slice(0, 4)).map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </AnimatePresence>
           </div>
 
-          <div className="mt-10 sm:mt-12 text-center">
-            <Button variant="primary" size="lg" icon={ArrowIcon} onClick={() => navigate('/portfolio')}>
-              {t('viewAllProjects')}
-            </Button>
+          <div className="mt-10 sm:mt-12 text-center flex items-center justify-center gap-4">
+            {!showAllProjects ? (
+              <Button
+                variant="primary"
+                size="lg"
+                icon={ArrowIcon}
+                onClick={() => setShowAllProjects(true)}
+              >
+                {t('viewAllProjects')} ({projectsData.length})
+              </Button>
+            ) : (
+              <Button
+                variant="primary"
+                size="lg"
+                icon={ArrowIcon}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  navigate('/portfolio');
+                }}
+              >
+                {lang === 'en' ? 'Explore Full Portfolio Page' : 'الانتقال لصفحة المعرض الكاملة'}
+              </Button>
+            )}
           </div>
         </div>
       </section>
